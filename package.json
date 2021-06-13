@@ -1,0 +1,25 @@
+{
+  "name": "platzi-nextjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^10.2.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "sass": "^1.34.1"
+  },
+  "devDependencies": {
+    "@types/node": "^15.12.2",
+    "@types/react": "^17.0.11",
+    "typescript": "^4.3.2"
+  }
+}
