@@ -6,7 +6,7 @@ type state = {
 export const initialState: state = {
   cart: {
     items: {},
-    amount: 18
+    amount: 0
   },
   avocados: []
 }
@@ -14,11 +14,36 @@ export const initialState: state = {
 export const appReducer = (state: state, action: Action) => {
   switch (action.type) {
     case 'ADD_ITEM': {
+      const item = action.payload
+
+      if (item.id in state.cart.items) {
+        return {
+          ...state,
+          cart: {
+            ...state.cart,
+            items: {
+              ...state.cart.items,
+              [item.id]: {
+                ...item,
+                quantity:
+                  state.cart.items[item.id].quantity + action.quantity
+              }
+            },
+            amount: state.cart.amount + action.quantity
+          }
+        }
+      }
       return {
         ...state,
         cart: {
           ...state.cart,
-          [action.payload.id]: action.payload,
+          items: {
+            ...state.cart.items,
+            [action.payload.id]: {
+              ...item,
+              quantity: action.quantity
+            }
+          },
           amount: state.cart.amount + action.quantity
         }
       }

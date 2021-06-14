@@ -5,8 +5,10 @@ interface ProductDetailProps {
 }
 
 import styles from './ProductDetail.module.scss'
+import { useAppState } from '../AppProvider/index'
 
 const ProductDetail = ({ product }: ProductDetailProps) => {
+  const [state, dispatch] = useAppState()
   return (
     <div className={styles.productDetail}>
       <figure className={styles.productDetail__image}>
@@ -25,7 +27,17 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
             step={1}
             defaultValue={1}
           />
-          <button className='button-1'>Add to the Cart</button>
+          <button
+            className='button-1'
+            onClick={() =>
+              dispatch({
+                type: 'ADD_ITEM',
+                payload: product,
+                quantity: 1
+              })
+            }>
+            Add to the Cart
+          </button>
         </div>
       </div>
     </div>

@@ -22,7 +22,7 @@ type TProduct = {
 
 interface Cart {
   items: {
-    [key: string]: TProduct
+    [key: string]: TProduct & { quantity: number }
   }
   amount: number
 }
