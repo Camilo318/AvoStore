@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 interface ProductDetailProps {
   product: TProduct
@@ -9,6 +9,24 @@ import { useAppState } from '../AppProvider/index'
 
 const ProductDetail = ({ product }: ProductDetailProps) => {
   const [state, dispatch] = useAppState()
+  const [amount, setAmount] = useState<number>(1)
+
+  const handleChange = e => {
+    const name = e.target.name
+    const value = e.target.value
+
+    if (name === 'amount') {
+      setAmount(() => +value)
+    }
+  }
+
+  const addItem = () => {
+    dispatch({
+      type: 'ADD_ITEM',
+      payload: product,
+      quantity: amount
+    })
+  }
   return (
     <div className={styles.productDetail}>
       <figure className={styles.productDetail__image}>
@@ -21,21 +39,15 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
         <span className={styles.sku}>SKU: {product.sku}</span>
         <div className={styles.inputs}>
           <input
+            name='amount'
             className='input-1'
             type='number'
             min={1}
             step={1}
-            defaultValue={1}
+            value={amount}
+            onChange={handleChange}
           />
-          <button
-            className='button-1'
-            onClick={() =>
-              dispatch({
-                type: 'ADD_ITEM',
-                payload: product,
-                quantity: 1
-              })
-            }>
+          <button className='button-1' onClick={addItem}>
             Add to the Cart
           </button>
         </div>

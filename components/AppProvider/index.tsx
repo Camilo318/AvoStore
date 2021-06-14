@@ -4,7 +4,7 @@ const AppContext = createContext(undefined) //Context object to pass data throug
 
 import { appReducer, initialState } from '../../reducer/index'
 
-//Custom hook to subscribe to the context cahnges
+//Custom hook to subscribe to the context changes
 export const useAppState = () => useContext(AppContext)
 
 const AppProvider: React.FC = ({ children }) => {

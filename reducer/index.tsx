@@ -48,6 +48,21 @@ export const appReducer = (state: state, action: Action) => {
         }
       }
     }
+
+    case 'DELETE_ITEM': {
+      const id = action.payload.id
+
+      const newItems = { ...state.cart.items }
+      delete newItems[id]
+
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          items: newItems
+        }
+      }
+    }
     default:
       return state
   }
