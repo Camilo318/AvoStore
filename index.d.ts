@@ -19,3 +19,16 @@ type TProduct = {
   image: Url
   attributes: TProductAttributes
 }
+
+interface Cart {
+  items: {
+    [key: string]: TProduct
+  }
+  amount: number
+}
+
+interface Action {
+  type: string
+  payload: TProduct
+  quantity?: number
+}

@@ -2,7 +2,11 @@ import React from 'react'
 import Link from 'next/link'
 import styles from './Navbar.module.scss'
 
+import { useAppState } from '../AppProvider/index'
+
 const Navbar: React.FC = () => {
+  const [state] = useAppState()
+
   return (
     <header className={styles.navbar}>
       <nav>
@@ -12,8 +16,7 @@ const Navbar: React.FC = () => {
         <div>
           <Link href='/cart'>
             <a className={styles.navbar__cart}>
-              {/* <img src="" alt="" /> */}
-              <span>Cart (0)</span>
+              <span>Cart ({state.cart.amount})</span>
             </a>
           </Link>
         </div>
