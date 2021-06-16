@@ -32,3 +32,8 @@ interface Action {
   payload: TProduct
   quantity?: number
 }
+
+type state = {
+  cart: Cart
+  avocados: TProduct[]
+}

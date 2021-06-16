@@ -1,8 +1,3 @@
-type state = {
-  cart: Cart
-  avocados: TProduct[]
-}
-
 export const initialState: state = {
   cart: {
     items: {},
