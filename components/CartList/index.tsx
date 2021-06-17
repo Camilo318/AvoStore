@@ -1,16 +1,17 @@
 import React from 'react'
+import CartItem from '../CartItem/index'
+import styles from './CartList.module.scss'
 
 interface Props {
-  items: Cart
+  items: {
+    [key: string]: CartItemType
+  }
 }
 const CartList = ({ items }: Props) => {
   return (
-    <section>
-      {Object.values(items.items).map(item => (
-        <div key={item.id}>
-          <p>{item.name}</p>
-          <span>x{item.quantity}</span>
-        </div>
+    <section className={styles.cartList}>
+      {Object.values(items).map(item => (
+        <CartItem item={item} key={item.id} />
       ))}
     </section>
   )

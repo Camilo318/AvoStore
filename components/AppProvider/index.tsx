@@ -1,4 +1,9 @@
-import React, { createContext, useContext, useReducer } from 'react'
+import React, {
+  createContext,
+  useContext,
+  useReducer,
+  Dispatch
+} from 'react'
 
 const AppContext = createContext(undefined) //Context object to pass data through the component tree
 
@@ -8,7 +13,10 @@ import { appReducer, initialState } from '../../reducer/index'
 export const useAppState = () => useContext(AppContext)
 
 const AppProvider: React.FC = ({ children }) => {
-  let contextValue = useReducer(appReducer, initialState)
+  let contextValue: [state, Dispatch<Action>] = useReducer(
+    appReducer,
+    initialState
+  )
   return (
     <AppContext.Provider value={contextValue}>
       {children}

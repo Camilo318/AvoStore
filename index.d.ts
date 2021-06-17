@@ -22,10 +22,11 @@ type TProduct = {
 
 interface Cart {
   items: {
-    [key: string]: TProduct & { quantity: number }
+    [key: string]: CartItemType
   }
   amount: number
 }
+type CartItemType = TProduct & { quantity: number }
 
 interface Action {
   type: string
