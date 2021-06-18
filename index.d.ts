@@ -21,15 +21,12 @@ type TProduct = {
 }
 
 interface Cart {
-  items: {
-    [key: string]: CartItemType
-  }
-  amount: number
+  [key: string]: CartItemType
 }
 type CartItemType = TProduct & { quantity: number }
 
 interface Action {
-  type: string
+  type: 'ADD_ITEM' | 'DELETE_ITEM' | 'EDIT_AMOUNT'
   payload: TProduct
   quantity?: number
 }

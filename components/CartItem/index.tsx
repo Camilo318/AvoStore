@@ -12,7 +12,11 @@ const CartItem = ({ item }: Props) => {
 
   function handleChange(e: any) {
     const amount = e.target.value
-    dispatch({ type: 'ADD_ITEM', payload: item, quantity: +amount })
+    dispatch({
+      type: 'EDIT_AMOUNT',
+      payload: item,
+      quantity: +amount
+    })
   }
   return (
     <div className={styles.cartItem}>
