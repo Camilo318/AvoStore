@@ -5,7 +5,8 @@ import React, {
   Dispatch
 } from 'react'
 
-const AppContext = createContext(undefined) //Context object to pass data through the component tree
+//Context object to pass data through the component tree
+const AppContext = createContext(undefined)
 
 import { appReducer, initialState } from '../../reducer/index'
 
