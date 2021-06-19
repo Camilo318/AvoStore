@@ -11,7 +11,27 @@ const AppContext = createContext(undefined)
 import { appReducer, initialState } from '../../reducer/index'
 
 //Custom hook to subscribe to the context changes
-export const useAppState = () => useContext(AppContext)
+const useAppState = () => useContext(AppContext)
+
+const getCartAmount = (sum: number, item: CartItemType) =>
+  sum + item.quantity
+
+const getCartTotal = (sum: number, item: CartItemType) =>
+  sum + item.price * item.quantity
+
+export const useCart = () => {
+  const [state, dispatch]: [state, Dispatch<Action>] = useAppState()
+  const list: CartItemType[] = Object.values(state.cart)
+  const amount: number = list.reduce(getCartAmount, 0)
+  const total: number = list.reduce(getCartTotal, 0)
+
+  return {
+    list,
+    amount,
+    total,
+    dispatch
+  }
+}
 
 const AppProvider: React.FC = ({ children }) => {
   let contextValue: [state, Dispatch<Action>] = useReducer(

@@ -2,10 +2,10 @@ import React from 'react'
 import Link from 'next/link'
 import styles from './Navbar.module.scss'
 
-import { useAppState } from '../AppProvider/index'
+import { useCart } from '../AppProvider/index'
 
 const Navbar: React.FC = () => {
-  const [state] = useAppState()
+  const { amount } = useCart()
 
   return (
     <header className={styles.navbar}>
@@ -16,7 +16,7 @@ const Navbar: React.FC = () => {
         <div>
           <Link href='/cart'>
             <a className={styles.navbar__cart}>
-              <span>Cart ({state.cart.amount})</span>
+              <span>Cart ({amount})</span>
             </a>
           </Link>
         </div>

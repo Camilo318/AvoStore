@@ -1,9 +1,9 @@
-import React, { Dispatch } from 'react'
-import { useAppState } from '@components/AppProvider/index'
+import React from 'react'
+import { useCart } from '@components/AppProvider/index'
 import CartList from '@components/CartList/index'
 const cart = () => {
-  const [state]: [state, Dispatch<Action>] = useAppState()
-  return <CartList items={state.cart} />
+  const { list } = useCart()
+  return <CartList items={list} />
 }
 
 export default cart

@@ -5,10 +5,10 @@ interface ProductDetailProps {
 }
 
 import styles from './ProductDetail.module.scss'
-import { useAppState } from '../AppProvider/index'
+import { useCart } from '../AppProvider/index'
 
 const ProductDetail = ({ product }: ProductDetailProps) => {
-  const [state, dispatch] = useAppState()
+  const { dispatch } = useCart()
   const [amount, setAmount] = useState<number>(1)
 
   const handleChange = e => {

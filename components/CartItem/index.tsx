@@ -5,10 +5,10 @@ interface Props {
 }
 
 import styles from './CartItem.module.scss'
-import { useAppState } from '@components/AppProvider'
+import { useCart } from '@components/AppProvider'
 
 const CartItem = ({ item }: Props) => {
-  const [state, dispatch]: [state, Dispatch<Action>] = useAppState()
+  const { dispatch } = useCart()
 
   function handleChange(e: any) {
     const amount = e.target.value
