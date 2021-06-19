@@ -11,7 +11,9 @@ const Footer: React.FC = ({ children }) => {
         </div>
 
         <div className={styles.mikasa}>
-          <h4>Mikasa Ackerman 💜</h4>
+          <h4>Mikasa Ackerman</h4>
+
+          <img src='/images/happy-avocado.svg' alt='happy avocado' />
         </div>
       </div>
     </footer>

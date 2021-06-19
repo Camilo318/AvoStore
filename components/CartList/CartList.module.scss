@@ -1,4 +1,5 @@
 .cartList {
   margin: 0 auto;
   width: clamp(288px, 90%, 900px);
+  min-height: calc(100vh - 109px - 107px);
 }
