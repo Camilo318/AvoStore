@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import ProductDetail from '@components/ProductDetail/index'
 import About from '@components/About/index'
+import { Toaster } from 'react-hot-toast'
 
 const ProductItem = () => {
   const router = useRouter()
@@ -22,9 +23,17 @@ const ProductItem = () => {
   }, [])
 
   return loading ? (
-    <h2>Loading avocado's info...</h2>
+    <div
+      style={{
+        minHeight: 'calc(100vh - 107px - 109px)',
+        width: 'clamp(288px, 90%, 900px)',
+        margin: '0 auto'
+      }}>
+      <h2>Loading avocado's info...</h2>
+    </div>
   ) : (
     <>
+      <Toaster />
       <ProductDetail product={avo} />
       <About product={avo} />
     </>

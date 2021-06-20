@@ -1,5 +1,4 @@
-import React, { Dispatch } from 'react'
-
+import React from 'react'
 interface Props {
   item: CartItemType
 }

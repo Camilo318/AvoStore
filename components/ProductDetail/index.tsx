@@ -7,6 +7,8 @@ interface ProductDetailProps {
 import styles from './ProductDetail.module.scss'
 import { useCart } from '../AppProvider/index'
 
+import toast from 'react-hot-toast'
+
 const ProductDetail = ({ product }: ProductDetailProps) => {
   const { dispatch } = useCart()
   const [amount, setAmount] = useState<number>(1)
@@ -25,6 +27,16 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
       type: 'ADD_ITEM',
       payload: product,
       quantity: amount
+    })
+
+    toast.success('Avocado added', {
+      position: 'top-right',
+      style: {
+        fontSize: '1.3rem',
+        padding: '1rem',
+        background: '#333',
+        color: '#fff'
+      }
     })
   }
   return (
