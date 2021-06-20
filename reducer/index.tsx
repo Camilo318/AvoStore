@@ -9,15 +9,6 @@ export const appReducer = (state: state, action: Action) => {
       const item = action.payload
       const { id } = item
 
-      if (item.id in state.cart) {
-        return {
-          ...state,
-          cart: {
-            ...state.cart,
-            [id]: { ...item, quantity: action.quantity }
-          }
-        }
-      }
       return {
         ...state,
         cart: {

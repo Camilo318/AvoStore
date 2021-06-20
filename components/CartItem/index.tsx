@@ -4,18 +4,14 @@ interface Props {
 }
 
 import styles from './CartItem.module.scss'
-import { useCart } from '@components/AppProvider'
+import { useCartActions } from '@components/AppProvider'
 
 const CartItem = ({ item }: Props) => {
-  const { dispatch } = useCart()
+  const { addItem } = useCartActions()
 
   function handleChange(e: any) {
     const amount = e.target.value
-    dispatch({
-      type: 'EDIT_AMOUNT',
-      payload: item,
-      quantity: +amount
-    })
+    addItem(item, +amount)
   }
   return (
     <div className={styles.cartItem}>

@@ -9,6 +9,7 @@ import React, {
 const AppContext = createContext(undefined)
 
 import { appReducer, initialState } from '../../reducer/index'
+import toast from 'react-hot-toast'
 
 //Custom hook to subscribe to the context changes
 const useAppState = () => useContext(AppContext)
@@ -30,6 +31,74 @@ export const useCart = () => {
     amount,
     total,
     dispatch
+  }
+}
+
+export const useCartActions = () => {
+  const [state, dispatch]: [state, Dispatch<Action>] = useAppState()
+
+  const addItem = (product: TProduct, quantity: number) => {
+    if (product.id in state.cart) {
+      if (quantity === 0) {
+        deleteItem(product)
+        return
+      }
+      dispatch({
+        type: 'EDIT_AMOUNT',
+        payload: product,
+        quantity: quantity
+      })
+
+      toast.success('Avo amount updated', {
+        position: 'top-center',
+        icon: '⚠️',
+        style: {
+          fontSize: '1.3rem',
+          padding: '1rem',
+          background: '#333',
+          color: '#fff'
+        }
+      })
+    } else {
+      dispatch({
+        type: 'ADD_ITEM',
+        payload: product,
+        quantity: quantity
+      })
+
+      toast.success('Avocado added', {
+        position: 'top-center',
+        style: {
+          fontSize: '1.3rem',
+          padding: '1rem',
+          background: '#333',
+          color: '#fff'
+        }
+      })
+    }
+  }
+
+  const deleteItem = (product: TProduct) => {
+    dispatch({
+      type: 'DELETE_ITEM',
+      payload: product
+    })
+
+    toast.success('Avo deleted', {
+      position: 'top-center',
+      icon: '🗑',
+      style: {
+        fontSize: '1.3rem',
+        padding: '1rem',
+        background: '#333',
+        color: '#fff'
+      }
+    })
+  }
+
+  return {
+    addItem,
+    deleteItem
   }
 }
 

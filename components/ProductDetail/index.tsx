@@ -5,12 +5,10 @@ interface ProductDetailProps {
 }
 
 import styles from './ProductDetail.module.scss'
-import { useCart } from '../AppProvider/index'
-
-import toast from 'react-hot-toast'
+import { useCartActions } from '../AppProvider/index'
 
 const ProductDetail = ({ product }: ProductDetailProps) => {
-  const { dispatch } = useCart()
+  const { addItem } = useCartActions()
   const [amount, setAmount] = useState<number>(1)
 
   const handleChange = e => {
@@ -22,23 +20,6 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
     }
   }
 
-  const addItem = () => {
-    dispatch({
-      type: 'ADD_ITEM',
-      payload: product,
-      quantity: amount
-    })
-
-    toast.success('Avocado added', {
-      position: 'top-right',
-      style: {
-        fontSize: '1.3rem',
-        padding: '1rem',
-        background: '#333',
-        color: '#fff'
-      }
-    })
-  }
   return (
     <div className={styles.productDetail}>
       <figure className={styles.productDetail__image}>
@@ -59,7 +40,9 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
             value={amount}
             onChange={handleChange}
           />
-          <button className='button-1' onClick={addItem}>
+          <button
+            className='button-1'
+            onClick={() => addItem(product, +amount)}>
             Add to the Cart
           </button>
         </div>
