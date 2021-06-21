@@ -5,6 +5,7 @@ interface Props {
 
 import styles from './CartItem.module.scss'
 import { useCartActions } from '@components/AppProvider'
+import Link from 'next/link'
 
 const CartItem = ({ item }: Props) => {
   const { addItem } = useCartActions()
@@ -15,11 +16,17 @@ const CartItem = ({ item }: Props) => {
   }
   return (
     <div className={styles.cartItem}>
-      <figure>
-        <img src='/images/avocado.svg' alt={item.name} />
-      </figure>
+      <Link href={`product/${item.id}`}>
+        <a className={styles.product__image}>
+          <img src='/images/avocado.svg' alt={item.name} />
+        </a>
+      </Link>
       <div className={styles.cartItem__info}>
-        <h3 className='heading-3'>{item.name}</h3>
+        <h3 className='heading-3'>
+          <Link href={`product/${item.id}`}>
+            <a className={styles.product__header}>{item.name}</a>
+          </Link>
+        </h3>
         <p>
           {item.quantity} X {item.price}
         </p>

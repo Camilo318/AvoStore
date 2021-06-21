@@ -3,7 +3,7 @@
   flex-direction: row;
   align-items: center;
 
-  figure {
+  .product__image {
     margin: 0;
     padding: 0.875rem;
     max-width: 100px;
@@ -25,6 +25,10 @@
   padding: 0.875rem;
   align-self: stretch;
   flex: 1;
+
+  .product__header {
+    display: block;
+  }
 
   p {
     font-size: 1rem;
