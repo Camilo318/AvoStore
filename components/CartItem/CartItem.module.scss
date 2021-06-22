@@ -43,8 +43,12 @@
 
 .cartItem__price {
   position: absolute;
-  top: calc(1rem + 14px);
+  top: 0;
   right: 14px;
+
+  @media (min-width: 768px) {
+    top: calc(1rem + 14px);
+  }
   span {
     display: block;
     padding: 0.5rem;
