@@ -8,7 +8,7 @@ import { useCartActions } from '@components/AppProvider'
 import Link from 'next/link'
 
 const CartItem = ({ item }: Props) => {
-  const { addItem } = useCartActions()
+  const { addItem, deleteItem } = useCartActions()
 
   function handleChange(e: any) {
     const amount = e.target.value
@@ -44,7 +44,17 @@ const CartItem = ({ item }: Props) => {
               </option>
             ))}
           </select>
+
+          <button
+            onClick={() => deleteItem(item)}
+            className='delete-btn'>
+            Delete
+          </button>
         </div>
+      </div>
+
+      <div className={styles.cartItem__price}>
+        <span>${(item.price * item.quantity).toFixed(2)}</span>
       </div>
     </div>
   )

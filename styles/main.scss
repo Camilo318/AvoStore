@@ -42,12 +42,28 @@ a {
 }
 
 .amount-selector {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-wrap: wrap;
   select {
     padding: 0.25rem 0.5rem;
+    margin-right: 0.875rem;
     border-radius: 0.25rem;
   }
 
   select:focus {
     outline: none;
   }
+}
+
+.delete-btn {
+  border: none;
+  background-color: white;
+  outline: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: teal;
+  font-weight: 700;
+  font-size: 1rem;
 }
