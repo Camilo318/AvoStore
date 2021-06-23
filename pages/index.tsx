@@ -1,20 +1,18 @@
-import { useState, useEffect } from 'react'
 import ProductList from '@components/ProductList/index'
 import Heading from '@components/Heading/index'
 
-function HomePage() {
-  const [list, setList] = useState<TProduct[]>([])
+export async function getStaticProps() {
+  const res = await fetch('https://avo-store-nine.vercel.app/api/avo')
+  const { data } = await res.json()
 
-  useEffect(() => {
-    async function getAvos() {
-      const res = await fetch('/api/avo')
-      const { data } = await res.json()
-      setList(data)
+  return {
+    props: {
+      data
     }
+  }
+}
 
-    getAvos()
-  }, [])
-
+function HomePage({ data: list }: { data: TProduct[] }) {
   return (
     <>
       <Heading subtitle='Best avos on paradis'>
