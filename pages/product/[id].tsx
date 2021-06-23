@@ -1,37 +1,34 @@
-import React, { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
+import React from 'react'
 import ProductDetail from '@components/ProductDetail/index'
 import About from '@components/About/index'
 import { Toaster } from 'react-hot-toast'
 
-const ProductItem = () => {
-  const router = useRouter()
-  const { id } = router.query
-  const [avo, setAvo] = useState<TProduct>()
-  const [loading, setLoading] = useState<boolean>(true)
+import { GetStaticProps } from 'next'
 
-  useEffect(() => {
-    async function getAvo() {
-      const res = await fetch(`/api/avo/${id}`)
-      const data = await res.json()
+export async function getStaticPaths() {
+  const res = await fetch('https://avo-store-nine.vercel.app/api/avo')
+  const { data }: { data: TProduct[]; length: number } =
+    await res.json()
+  const paths = data.map(item => ({ params: { id: item.id } }))
 
-      setAvo(data)
-      setLoading(false)
+  return { paths, fallback: false }
+}
+
+export async function getStaticProps({ params }) {
+  const res = await fetch(
+    `https://avo-store-nine.vercel.app/api/avo/${params.id}`
+  )
+  const data: TProduct = await res.json()
+
+  return {
+    props: {
+      data
     }
+  }
+}
 
-    getAvo()
-  }, [])
-
-  return loading ? (
-    <div
-      style={{
-        minHeight: 'calc(100vh - 107px - 109px)',
-        width: 'clamp(288px, 90%, 900px)',
-        margin: '0 auto'
-      }}>
-      <h2>Loading avocado's info...</h2>
-    </div>
-  ) : (
+const ProductItem = ({ data: avo }: { data: TProduct }) => {
+  return (
     <>
       <Toaster />
       <ProductDetail product={avo} />
